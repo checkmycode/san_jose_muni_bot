@@ -74,6 +74,6 @@ This project was meant to be cloned and used for your own use case. If you do ru
 
 #### Why can't PLAYER_COUNT be 1?
 
-It was never planned to be used for solo players, since getting a 1 spot is relatively easy.
+It was never intended to be used for solo players, since getting a 1 spot is relatively easy.
 
 
