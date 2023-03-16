@@ -1,9 +1,10 @@
-# Date Wanted (XX-XX-XXXX // always add a 0 if single digit (e.g. 01, 02, 03)
+# Date Wanted (XX-XX-XXXX // always add a 0 if single digit (e.g. 01, 02, 03))
 MONTH = '03'
-DAY = '16'
+DAY = '20'
 YEAR = '2023'
 
-# How many in your party? (1-4)
+# How many in your party? (2-4)
+# PLAYER_COUNT cannot be 1 or the code will crash
 PLAYER_COUNT = 4
 
 # Uses Standard Time (7:00AM - 6:52PM - make sure time is identical to the tee time list below)

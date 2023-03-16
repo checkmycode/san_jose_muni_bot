@@ -2,7 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 import selenium_project.constants as const
 from bs4 import BeautifulSoup
-import pandas as pd
 import requests
 import time
 import os
@@ -14,6 +13,8 @@ class Parser(webdriver.Chrome):
         os.environ['PATH'] += self.driver_path
         super(Parser, self).__init__()
         self.implicitly_wait(15)
+        self.new_links = []
+        self.new_times = []
 
     def login_link(self):
         self.get('https://sanjosemuni.quick18.com/Account/LogOn?ReturnUrl=%2faccount')
@@ -27,8 +28,7 @@ class Parser(webdriver.Chrome):
     def goto_tee_time_page(self):
         self.get(const.FULL_URL)
 
-    @staticmethod
-    def get_info():
+    def get_info(self):
         # Start bs4 to begin parsing website
         response = requests.get(const.FULL_URL)
         website_html = response.text
@@ -60,35 +60,25 @@ class Parser(webdriver.Chrome):
 
         full_link = [muni + link for link in links]
 
-        # Define a dictionary containing times, players, price, and links
-        data = {
-            'Times': times,
-            'Players': players,
-            'Prices': price,
-            'Links': full_link[1:],
-        }
+        for index, row in enumerate(players):
+            if row == '2 to 4 players':
+                self.new_times.append(times[index])
+                self.new_links.append(full_link[1:][index])
 
-        # Convert the dictionary into DataFrame
-        df = pd.DataFrame.from_dict(data, orient='index')
-        df = df.transpose()
+        return self.new_times, self.new_links
 
-        # Remove rows without 4 player availability
-        for index, row in df.iterrows():
-            if '4' not in (row["Players"]):
-                df = df.drop(index)
-
-        return df
-
-    @staticmethod
     # User input for time > Check if available > if not available, take nearest available time
-    def check_for_availability(df):
+    def check_for_availability(self):
         looper = True
         idx = const.tee_time_list.index(const.WANTED_TIME)
-        times_list = df.Times.values.tolist()
         while looper:
-            if const.tee_time_list[idx] in times_list:
-                href_idx = times_list.index(const.tee_time_list[idx])
-                final_url = (df.iloc[href_idx, 3])
+            if const.tee_time_list[idx] in self.new_times:
+                print(const.tee_time_list[idx])
+                print(self.new_links)
+                print(self.new_times)
+                href_idx = self.new_times.index(const.tee_time_list[idx])
+                print(href_idx)
+                final_url = self.new_links[href_idx]
                 return final_url
             else:
                 idx += 1
@@ -104,12 +94,6 @@ class Parser(webdriver.Chrome):
         elif const.PLAYER_COUNT == 2:
             self.find_element(By.ID, 'Players0_label').click()
 
-        # self.find_element(
-        #     By.XPATH, '/html/body/div[2]/div[1]/div[2]/div/div/div/div/div/div/div[1]/booking-confirmation/div/form/'
-        #               'div[2]/div[1]/reservation-review-terms/label/div/input'
-        # ).click()
-        #
-        # self.find_element(
-        #     By.XPATH, '/html/body/div[2]/div[1]/div[2]/div/div/div/div/div/div/div[1]/booking-confirmation/div'
-        #               '/form/div[2]/div[2]/reservation-review-submit-button/button'
-        # ).click()
+        self.find_element(By.XPATH, '//*[@id="be_detail_details"]/b/b/div[6]/button').click()
+        time.sleep(1)
+        self.find_element(By.XPATH, '//*[@id="submitButton"]').click()
