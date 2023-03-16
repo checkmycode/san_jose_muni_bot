@@ -18,12 +18,21 @@ https://chromedriver.chromium.org/downloads
 
     ∙ Make new folder in C: and name it SeleniumDrivers
         ∙ Extract all files from the downloaded zip to C:\SeleniumDrivers
+        
+Open command prompt and run:
 ```bash
   pip install selenium
 ```
 ```bash
   pip install bs4
 ```
+Edit san_jost_muni_bot.bat
+
+    @echo off
+    "Path where your Python exe is stored\python.exe" "Path where your Python script is stored\script name.py"
+    pause
+
+Setup Windows Task Scheduler to run san_jost_muni_bot.bat at 7 A.M.
 
 # Documentation
 
