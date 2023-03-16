@@ -1,7 +1,7 @@
 
 # San Jose Muni Bot
 
-This code was designed to take various inputs and automate a website to schedule a tee time automatically, so you don't have to wake up at 7 A.M.
+This code was designed to take inputs and automate a website to schedule a tee time. Coupled with Windows Task Scheduler, this code can be ran at 7 A.M., so you don't have to wake up.
 
 ## Deployment
 
@@ -17,7 +17,7 @@ Download chromedriver here:
 https://chromedriver.chromium.org/downloads
 
     ∙ Make new folder in C: and name it SeleniumDrivers
-        ∙ C:\SeleniumDrivers
+        ∙ Extract all files from the downloaded zip to C:\SeleniumDrivers
 ```bash
   pip install selenium
 ```
