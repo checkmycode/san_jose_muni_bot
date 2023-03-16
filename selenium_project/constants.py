@@ -11,8 +11,8 @@ PLAYER_COUNT = 4
 WANTED_TIME = '7:00AM'
 
 # User Credentials for San Jose Muni website
-USER_NAME = 'markcuasay@gmail.com'
-PASSWORD = 'Golf408$'
+USER_NAME = 'youremail@email.com'
+PASSWORD = 'password'
 
 
 # Do not touch anything below this line
