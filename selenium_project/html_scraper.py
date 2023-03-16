@@ -73,11 +73,7 @@ class Parser(webdriver.Chrome):
         idx = const.tee_time_list.index(const.WANTED_TIME)
         while looper:
             if const.tee_time_list[idx] in self.new_times:
-                print(const.tee_time_list[idx])
-                print(self.new_links)
-                print(self.new_times)
                 href_idx = self.new_times.index(const.tee_time_list[idx])
-                print(href_idx)
                 final_url = self.new_links[href_idx]
                 return final_url
             else:
