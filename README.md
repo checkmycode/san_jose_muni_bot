@@ -29,7 +29,7 @@ Open command prompt and run:
 Edit san_jost_muni_bot.bat
 
     @echo off
-    "Path where your Python exe is stored\python.exe" "Path where your Python script is stored\script name.py"
+    "Path where your Python exe is stored\python.exe" "Path where your Python script is stored\main.py"
     pause
 
 Setup Windows Task Scheduler to run san_jost_muni_bot.bat at 7 A.M.
