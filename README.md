@@ -10,8 +10,8 @@ To deploy this project run:
 Download Python Here:
 https://www.python.org/downloads/
 
-    ∙ Make sure to add to path first screen
-    ∙ Disable length in last screen
+    ∙ Make sure to add to PATH // checkbox in first screen
+    ∙ Make sure to disable length // checkbox in last screen
 
 Download chromedriver here:
 https://chromedriver.chromium.org/downloads
